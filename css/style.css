@@ -1,1 +1,844 @@
 @charset "utf-8";
+
+/* google fonts */
+@import url("https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600&display=swap");
+
+:root {
+
+/* ----------------------- main color ----------------------- */
+/* 
+    hsl(hue, saturation, lightness) 
+    hue(색조) : 0 ~ 360 ( 0: 빨간색, 120: 녹색, 240: 파란색 )
+    saturation(채도) : 0 ~ 100 (0: 회색, 100: 원색)
+    lightness(명도) : 0 ~ 100 (0: 검정색, 50: 중간, 100: 흰색)
+*/
+    --hue-color: 230;
+
+/* ----------------------- colors ----------------------- */
+    --primary-color: hsl(var(--hue-color), 69%, 61%);
+    --primary-color-lighter: hsl(var(--hue-color), 92%, 85%);
+
+    --black-color: hsl(var(--hue-color), 8%, 15%);
+    --gray-color: hsl(var(--hue-color), 8%, 45%);
+    --white-color: #FFF;
+    --body-color: hsl(var(--hue-color), 60%, 99%);
+
+/* ----------------------- typography ----------------------- */
+    --body-font: 'Poppins', sans-serif;
+    --big-font-size: 3rem;
+    --h1-font-size: 2.25rem;
+    --h2-font-size: 1.5rem;
+    --h3-font-size: 1.25rem;
+    --normal-font-size: 1rem;
+    --small-font-size: .813rem;
+
+/* ----------------------- font-weight ----------------------- */
+    --font-medium: 500;
+    --font-semi-bold: 600;
+
+/* ----------------------- margin bottom ----------------------- */
+    --mb-0-25: .25rem;
+    --mb-0-5: .5rem;
+    --mb-0-75: .75rem;
+    --mb-1: 1rem;
+    --mb-1-5: 1.5rem;
+    --mb-2: 2rem;
+    --mb-2-5: 2.5rem;
+    --mb-3: 3rem;
+
+/* ----------------------- z index ----------------------- */
+    --z-tooltip: 10;
+    --z-fixed: 100;
+    --z-modal: 1000;
+}
+
+/* ----------------------- dark-theme ----------------------- */
+body.dark-theme {
+    --black-color: hsl(var(--hue-color), 8%, 95%); /* 흰색으로 바뀝니다 */
+    --body-color: hsl(var(--hue-color), 28%, 12%); /* 어두운 색으로 바뀝니다 */
+}
+
+/* ----------------------- reset ----------------------- */
+* {
+    box-sizing: border-box;
+    padding: 0;
+    margin: 0;
+}
+body {
+    font-family: var(--body-font);
+    font-size: var(--normal-font-size);
+    background-color: var(--body-color);
+    color: var(--gray-color);
+}
+h1,h2,h3,h4 {
+    color: var(--black-color);
+    font-weight: var(--font-semi-bold);
+}
+h1 {
+    font-size: var(--h1-font-size);
+}
+h2 {
+    font-size: var(--h2-font-size);
+}
+h3 {
+    font-size: var(--h3-font-size);
+}
+ul {
+    list-style: none;
+}
+a {
+    text-decoration: none;
+    color: inherit;
+}
+img {
+    max-width: 100%;
+    vertical-align: top;
+}
+button {
+    cursor: pointer;
+}
+p{
+    font-size: 1rem;
+}
+
+/* ========================= reusable, common css ========================= */
+.section__title--wrap {
+    text-align: center;
+}
+.section__title {
+    font-size: var(--h1-font-size);
+}
+.section__subtitle {
+    font-size: var(--normal-font-size);
+    color: var(--gray-color);
+    margin-bottom: var(--mb-3);
+}
+.button {
+    display: inline-block;
+    background-color: var(--primary-color);
+    color: #fff;
+    padding: 1rem;
+    border-radius: .5rem;
+    font-weight: var(--font-medium);
+}
+
+/* ========================= layout ========================= */
+.inner {
+    min-width: 340px;
+    max-width: 768px;
+    margin: 0 auto;
+    padding: 2rem 0 4rem;
+}
+.flex {
+    display: flex;
+}
+
+/* ========================= header ========================= */
+.header {
+    position: fixed;
+    left: 0;
+    width: 100%;
+    background: var(--body-color);
+    z-index: var(--z-fixed);
+    box-shadow: 0 0 5px rgba(0,0,0,.2);
+}
+.header-inner {
+    max-width: 960px;
+    height: 3rem;
+    padding: 0 1rem;
+    margin: 0 auto;
+    align-items: center;
+    justify-content: space-between;
+    color: var(--black-color);
+}
+.logo {
+    width: 120px;
+}
+.nav__container {
+    background: var(--body-color);
+    margin-left: auto;
+}
+.nav__list {
+    justify-content: flex-end;
+}
+.nav__item {
+    font-weight: var(--font-semi-bold);
+}
+.nav__item:hover,
+.nav__item.active
+{
+    color: var(--primary-color);
+}
+.nav__btns {
+    color: var(--black-color);
+}
+.nav__item {
+    margin-right: var(--mb-1-5);
+    color: var(--black-color);
+}
+.nav__icon {
+    font-size: 1.5rem;
+    margin-left: var(--mb-0-75);
+    
+    display: none;
+}
+.change-theme {
+    font-weight: var(--font-medium);
+    font-size: 1.2rem;
+    cursor: pointer;
+    justify-content: center;
+    align-items: center;
+    padding-top: 3px;
+}
+.change-theme:hover {
+    color: var(--primary-color);
+}
+#buttonLight {
+    display: none;
+}
+#buttonDark {
+    display: block;
+}
+#navToggle {
+    display: none;
+}
+.nav__close {
+    color: var(--primary-color);
+    display: none;
+}
+
+/* ========================= home section ========================= */
+.background{
+    background: url(../img/background.gif) no-repeat center/cover;
+    width: 100%;
+    height: 100vh;
+}
+.home {
+    padding-top: 6rem;
+    display: flex;
+    position: relative;
+}
+.home__social {
+    position: absolute;
+    display: flex;
+    text-align: center;
+    flex-direction: column;
+    top: 50%;
+    transform: translateY(-50%);
+    left: -7rem;
+}
+.social__anchor {
+    margin-bottom: var(--mb-0-5);
+}
+.social__anchor:hover {
+    color: var(--primary-color);
+}
+.social__icon {
+    font-size: 1.5rem;
+    color: var(--primary-color);
+}
+.home__intro {
+    flex: 1;
+    text-align: center;
+    padding-top: 25%;
+}
+.home__title {
+    font-size: var(--big-font-size);
+    color: rgb(182, 228, 255);
+}
+.home__subtitle {
+    color: white;
+    margin-bottom: var(--mb-1);
+}
+.home__img {
+    flex: 1;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+.home__profile {
+    width: 350px;
+    height: 350px;
+    background: var(--primary-color);
+    border-radius: 60% 70% 80% 55% / 40% 40% 100% 80%;
+    overflow: hidden;
+}
+.home__desc {
+    margin-bottom: var(--mb-1-5);
+}
+.social__icon {
+    cursor: pointer;
+}
+
+/* ========================= about section ========================= */
+.about__desc {
+    display: flex;
+    justify-content: space-between;
+}
+.about__img {
+    width: 40%;
+    border-radius: .5rem;
+}
+.about__img img { 
+    border-radius: .5rem;
+}
+.about__info--wrap {
+    display: flex;
+    /* flex-direction: column;
+    justify-content: space-between; */
+    flex-direction: column;
+    align-items: center;
+    width: 45%;
+}
+.about__info {
+    display: flex;
+    /* justify-content: space-between; */
+    width: 100%;
+}
+.skils{
+    width: 100%;
+}
+.skill p{
+    padding: 2rem;
+}
+.about__download {
+    display: flex;
+    margin-top: 100px;
+    align-items: center;
+}
+.about__download i {
+    font-size: 1.5rem;
+    margin-left: var(--mb-0-75);
+}
+
+/* ========================= skills section ========================= */
+.skills__list {
+    display: flex;
+    flex-wrap: wrap;
+}
+.skills__item {
+    display: flex;
+    width: 50%;
+    flex-shrink: 0;
+    flex-direction: column;
+    margin-bottom: var(--mb-1-5);
+    padding-right: var(--mb-1-5);
+}
+.skills__header {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    margin-bottom: var(--mb-1);
+    cursor: pointer;
+}
+.skills__title {
+    display: flex;
+    align-items: center;
+}
+.skills__title i {
+    margin-right: var(--mb-1);
+}
+.skill__icon,
+.skill__icon--arrow {
+    font-size: var(--h1-font-size);
+    color: var(--primary-color);
+    transition: .3s;
+}
+.skill__icon--arrow.active {
+    transform: rotate(180deg);
+}
+.skill__progress {
+    padding-left: 3.2rem;
+    margin-bottom: var(--mb-1);
+}
+.skill__titles {
+    display: flex;
+    justify-content: space-between;
+}
+.skill__titles h3 {
+    font-weight: var(--small-font-size);
+}
+
+.skill__data {
+    display: none;
+}
+
+.skill__bar {
+    height: 8px;
+    border-radius: .5rem;
+    overflow: hidden;
+    background: var(--primary-color-lighter);
+}
+.skill_percent {
+    display: block;
+    width: 80%;
+    height: 100%;
+    background: var(--primary-color);
+}
+
+/* ========================= Qualification section ========================= */
+.qualification__tabs {
+    display: flex;
+    margin-bottom: var(--mb-3);
+}
+.qualification__tab {
+    flex: 1;
+    text-align: center;
+    font-size: var(--h2-font-size);
+}
+.qualification__tab.active {
+    color: var(--primary-color);
+}
+
+.qualification__content {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+.qualification__item {
+    display: flex;
+    width: 50%;
+}
+.qualification__data {
+    flex: 3;
+}
+.qualification__divider {
+    flex: 1;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+.qualification__circle {
+    width: 10px;
+    height: 10px;
+    border-radius: 50%;
+    background: var(--primary-color);
+}
+.qualification__line {
+    width: 2px;
+    height: 100%;
+    background: var(--primary-color);
+}
+.qualification__blank {
+    flex: 3;
+}
+
+/* ========================= Service section ========================= */
+.service__content {
+    display: flex;
+    justify-content: space-between;
+}
+.service__item {
+    flex:1;
+    padding: 3.5rem .5rem 1.25rem 1.5rem;
+    box-shadow: 0 3px 5px rgba(0,0,0,.2);
+    margin-right: 1rem;
+}
+.service__item h2 {
+    margin: var(--mb-1) 0;
+}
+.service__item > a {
+    color: var(--primary-color);
+}
+.service__item > i {
+    font-size: var(--h1-font-size);
+    color: var(--primary-color);
+}
+.service__item > a i {
+    font-size: var(--h3-font-size);
+}
+.service__item:last-child {
+    margin-right: 0;
+}
+.service__modal {
+    position: fixed;
+    top: 0;
+    left: 0;
+    bottom: 0;
+    right: 0;
+    z-index: var(--z-modal);
+    background: rgba(0,0,0,0.2);
+    display: none;
+}
+.service__modal-content {
+    padding: 1rem;
+    border-radius: .5rem;
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    width: 400px;
+    height: 300px;
+    background: var(--white-color);
+}
+.service__modal-content i {
+    color: var(--primary-color);
+    font-size: var(--h2-font-size);
+}
+.modal__close {
+    height: 30px;
+    width: 30px;
+    line-height: 30px;
+    text-align: center;
+    cursor: pointer;
+}
+.service__modal-header {
+    display: flex;
+    justify-content: space-between;
+    margin-bottom: var(--mb-1);
+}
+.service__modal-header .title {
+    font-weight: 500;
+    color: var(--black-color);
+}
+.service__modal--item {
+    margin-bottom: var(--mb-1);
+}
+
+/* ========================= Portfolio section ========================= */
+.slick__button {
+    width: 150px;
+}
+.slider__button:hover {
+    background: #012129;
+}
+.custom__slider {
+    max-width: 660px;
+    margin: 0 auto;
+}
+.slider__content {
+    display: flex;
+}
+.slider__img {
+    flex: 1;
+    padding: 1rem;
+}
+.slider__img img {
+    border-radius: .5rem;
+}
+.slider__desc {
+    flex: 1;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    padding: 1rem;
+    padding-left: 3rem;
+}
+.slider__desc p {
+    margin: 1rem 0;
+}
+.slider__buttons {
+    display: flex;
+    justify-content: center;
+}
+.slick__button:first-child {
+    margin-right: var(--mb-1);
+}
+
+/* arrow */
+.slick-prev,
+.slick-next
+{
+    position: absolute;
+    top: 50%;
+    transform: translateY(-50%);
+    width: 50px;
+    height: 50px;
+    border-radius: 50%;
+    font-size: 0;
+    border: none;
+    background: transparent;
+    cursor: pointer;
+}
+.slick-prev {
+    left: -2rem;
+}
+.slick-next {
+    right: -2rem;
+}
+.slick-prev:after,
+.slick-next:after{
+    font-size: 3rem;
+    color: var(--primary-color);
+}
+.slick-prev:after,
+.slick-next:after{
+    font-family: unicons-line;
+}
+.slick-prev:after {
+    content: '\ec49';
+}
+.slick-next:after {
+    content: '\eb9f';
+}
+
+/* progress */
+.slick-dots {
+    display: flex;
+    justify-content: center;
+    position: relative;
+    cursor: pointer;
+}
+/* active된 dot */
+.slick-dots li.slick-active button {
+    background: var(--primary-color);
+}
+/* 나머지 dot */
+.slick-dots li {
+    margin-right: .5rem;
+    
+}
+.slick-dots li button {
+    background: #666;
+    width: 15px;
+    height: 15px;
+    border-radius: 50%;
+    font-size: 0;
+    border: none;
+    cursor: pointer;
+}
+
+/* ========================= scroll up ========================= */
+.scrollup {
+    position: fixed;
+    right: 1rem;
+    bottom: -20%;
+    background-color: var(--primary-color);
+    opacity: .8;
+    padding: 0 .3rem;
+    border-radius: .4rem;
+    z-index: var(--z-tooltip);
+    transition: .4s;
+}
+.scrollup__icon {
+    font-size: 1.5rem;
+    color: #fff;
+}
+.scrollup.visible {
+    bottom: 5rem;
+}
+
+/* ========================= footer ========================= */
+.footer {
+    background: var(--primary-color);
+    padding: 3rem 0 3.5rem;
+}
+.footer__container {
+    display: flex;
+    color: #fff;
+}
+.footer__info {
+    flex: 1;
+}
+.footer__links {
+    flex: 3;
+    text-align: center;
+}
+.footer__link {
+    margin-right: 1rem;
+}
+.footer__info h1 {
+    color: var(--white-color);
+}
+.footer__social {
+    flex: 1;
+}
+.footer__social i {
+    margin-right: 1rem;
+    font-size: var(--h3-font-size);
+}
+.footer__links span {
+    margin-top: 5rem;
+}
+.footer__copy {
+    margin-top: 2rem;
+    color: var(--white-color);
+    text-align: center;
+}
+
+/* ========================= Tablet ========================= */
+@media (max-width: 768px){
+
+    /*
+        글로벌 변수를 통해 폰트 사이즈를 한번에 반응형에 적용하게 됩니다
+    */
+    :root {
+        --h1-font-size: 1.5rem;
+        --h2-font-size: 1.25rem;
+        --h3-font-size: 1.125rem;
+        --big-font-size: 2rem;
+        --normal-font-size: .938rem;
+        --small-font-size: .75rem;
+    }
+    .inner {
+        padding: 2rem 2rem;
+    }
+    .header {
+        position: fixed;
+        bottom: 0;
+        left: 0;
+        width: 100%;
+        background-color: var(--body-color);
+        box-shadow: 0 0 5px rgba(0,0,0,.5);
+        padding: 0 1rem;
+        z-index: var(--z-fixed);
+    }
+    .home.inner {
+        padding: 0 4rem;
+    }
+    .nav__container {
+        position: fixed;
+        bottom: 0;
+        left: 0;
+        transform: translateY(100%);
+        width: 100%;
+        padding: 2rem 1.5rem 4rem;
+        box-shadow: 0 0 5px rgba(0,0,0,.5);
+        transition: .3s;
+        border-radius: 1.5rem 1.5rem 0 0;
+    }
+    .nav__container.visible {
+        transform: translateY(0);
+    }
+    .nav__list {
+        justify-content: flex-start;
+        flex-wrap: wrap;
+    }
+    .nav__item {
+        width: 33.3333%;
+        margin-right: 0;
+        text-align: center;
+        padding: 1rem;
+    }
+    .nav__link {
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+    }
+    .nav__icon {
+        margin-left: 0;
+        display: block;
+    }
+    #buttonLight {
+        margin-right: 1rem;
+    }
+    #buttonDark {
+        margin-right: 1rem;
+    }
+    .nav__close {
+        display: block;
+        position: absolute;
+        right: 2rem;
+        bottom: 2rem;
+        font-size: 1.5rem;
+        cursor: pointer;
+    }
+    #navToggle {
+        display: block;
+        cursor: pointer;
+        font-size: 1.5rem;
+    }
+
+    /* ======================== Home ======================== */
+    #home {
+        padding-top: 3.5rem;
+    }
+    .home__profile {
+        width: 200px;
+        height: 200px;
+    }
+    .home__social {
+        text-align: center;
+        left: 1rem;
+        top: 61%;
+    }
+    /* ========================= About ========================= */
+    .about__download {
+        margin-top: var(--mb-1);
+    }
+}
+
+/* ========================= Mobile ========================= */
+@media (max-width: 568px){
+    #home {
+        flex-direction: column;
+    }
+    .home__img {
+        order: -1;
+        margin-bottom: 1rem;
+    }
+    .about__desc {
+        flex-direction: column;
+        align-items: center;
+    }
+    .about__img {
+        width: 80%;
+    }
+    .about__info--wrap {
+        width: 80%;
+        margin-bottom: 1rem;
+    }
+    .about__info--para {
+        margin: 1rem 0;
+        text-align: center;
+    }
+
+    /* ====================== Skills ===================== */
+    .skills__list {
+        flex-direction: column;
+    }
+    .skills__item {
+        width: auto;
+    }
+
+    /* ==================== Qualification =============== */
+    .qualification__item {
+        width: 80%;
+    }
+
+    /* ==================== Services =================== */
+    .service__content {
+        flex-wrap: wrap;
+    }
+    .service__item {
+        margin-right: 2%;
+        width: 49%;
+        flex: auto;
+    }
+    .service__item:nth-child(1) {
+        width: 49%;
+    }
+    .service__item:nth-child(2) {
+        margin-right: 0;
+    }
+
+    /* =================== Portfolio ================== */
+    .slider__content {
+        flex-direction: column;
+        text-align: center;
+    }
+    .slick__button {
+        align-self: center;
+    }
+
+    /* ===================== Footer =================== */
+    .footer {
+        padding-top: 0;
+    }
+    .footer__container {
+        flex-direction: column;
+    }
+    .footer__links {
+        margin: var(--mb-1) 0;
+    }
+    .footer__link {
+        display: block;
+        margin: var(--mb-1) 0;
+        text-align: left;
+    }
+
+}
+
+
+
+
