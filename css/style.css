@@ -12,7 +12,7 @@
     saturation(채도) : 0 ~ 100 (0: 회색, 100: 원색)
     lightness(명도) : 0 ~ 100 (0: 검정색, 50: 중간, 100: 흰색)
 */
-    --hue-color: 230;
+    --hue-color: 260;
 
 /* ----------------------- colors ----------------------- */
     --primary-color: hsl(var(--hue-color), 69%, 61%);
@@ -55,7 +55,7 @@
 /* ----------------------- dark-theme ----------------------- */
 body.dark-theme {
     --black-color: hsl(var(--hue-color), 8%, 95%); /* 흰색으로 바뀝니다 */
-    --body-color: hsl(var(--hue-color), 28%, 12%); /* 어두운 색으로 바뀝니다 */
+    --body-color: hsl(var(--hue-color), 5%, 25%); /* 어두운 색으로 바뀝니다 */
 }
 
 /* ----------------------- reset ----------------------- */
@@ -273,15 +273,12 @@ p{
 }
 .about__info--wrap {
     display: flex;
-    /* flex-direction: column;
-    justify-content: space-between; */
     flex-direction: column;
     align-items: center;
     width: 45%;
 }
 .about__info {
     display: flex;
-    /* justify-content: space-between; */
     width: 100%;
 }
 .about__download {
@@ -296,19 +293,38 @@ p{
 /* ========================= product section ========================= */
 .product__container{
     display: flex;
-
+}
+.product__container a{
+    width: 50%;
 }
 .product__img{
-    width: 50%;
+    width: 100%;
     padding: 1rem;
     border-radius: 10px;
     box-shadow: 3px 3px 3px 3px rgba(99, 99, 99, 0.438);
 }
 .product__txt{
-    width: 60%;
-    text-align: center;
+    text-align: left;
+    margin-left: 2rem;
     padding: 1rem;
 }
+.info__button{
+    width: 150px;
+    margin: .5rem;
+    padding: 1rem;
+    background: var(--primary-color);
+    border-radius: .5rem;
+    color: white;
+}
+.close__modal{
+    background: var(--primary-color);
+    width: 20px;
+    height: 20px;
+    border-radius: 50%;
+    margin: 0 auto;
+    color: white;
+}
+
 /* ========================= Portfolio section ========================= */
 .slick__button {
     width: 150px;
@@ -317,12 +333,15 @@ p{
     background: #012129;
 }
 .custom__slider {
-    max-width: 660px;
+    max-width: 400px;
     margin: 0 auto;
 }
 .slider__content {
     display: flex;
+    padding: 3rem;
+    justify-content: center;
 }
+
 .slider__img {
     flex: 1;
     padding: 1rem;

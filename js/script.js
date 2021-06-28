@@ -31,55 +31,32 @@ $(function(){
         $('.nav__container').toggleClass('visible');
     })
 
-    /* ================= About ================= */
-    // 1. 카운트할 셀렉터만 기입하면 자동으로 됩나다
-    // 2. duration은 시간입니다. 수정가능합니다
-    // 3. 엘리먼트에는 숫자만 있어야 합니다
-    $('.stoudyCount, .pracCount, .projectCount').each(function () {
-        $(this).prop('Counter',0).animate({
-                Counter: $(this).text()
-        }, {
-                duration: 3000,
-                easing: 'swing',
-                step: function (now) {
-                    $(this).text(Math.ceil(now));
-            }
-        });
-    });
-
     /* ================= skill tabs ================= */
     $('.skills__header').click(function(){
         $(this).children('.skill__icon--arrow').toggleClass('active');
         $(this).siblings('.skill__data').stop().slideToggle();
     })
 
-    /* ================= qualifictaion ================= */
-    var $qualificationTab = $('.qualification__tab');
-    var $qualificationContent = $('.qualification__content');
-    $qualificationContent.eq(1).hide();
-    $qualificationTab.click(function(e){
-        e.preventDefault();
-        $(this).siblings().removeClass('active');
-        $(this).addClass('active');
-        var idx = $(this).index();
-        $qualificationContent.hide();
-        $qualificationContent.eq(idx).show();
-    })
-
-    /* ================= service ================= */
-    $('.service__item-button').click(function(e){
-            e.preventDefault();
-            $(this).siblings('.service__modal').show();
-    })
-    $('.modal__close').click(function(){
-        $('.service__modal').hide();
-    })
-    $('.service__modal').click(function(e){
-        if(e.target === e.currentTarget){
-            $(this).hide();
-        }
-    })
-
+    /* ================= product ================= */
+    var $modal = $('.modal');
+    var $overlay = $('.overlay');
+    var $btn = $('button');
+    var $btnClose = $('.close__modal');
+    
+        $overlay.hide();
+        $btn.click(function(){
+            $overlay.fadeIn();
+        })
+        $btnClose.click(function(){
+            $overlay.fadeOut();
+        });
+        $overlay.click(function(e){
+            // target은 내가 클릭한 객체
+            // currentTarget은 이벤트가 발생한 객체
+            if(e.target == e.currentTarget){
+                $(this).fadeOut();
+            }
+        })   
     /* ================= portfolio ================= */
     $('.custom__slider').slick({
         dots:true,
