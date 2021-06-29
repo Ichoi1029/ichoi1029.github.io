@@ -96,6 +96,7 @@ img {
 }
 button {
     cursor: pointer;
+    border-style: none;
 }
 p{
     font-size: 1rem;
@@ -310,7 +311,8 @@ p{
 }
 .info__button{
     width: 150px;
-    margin: .5rem;
+    margin: 1rem;
+    margin-top: 2rem;
     padding: 1rem;
     background: var(--primary-color);
     border-radius: .5rem;
